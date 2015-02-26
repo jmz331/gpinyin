@@ -30,5 +30,6 @@ func TestIsChinese(t *testing.T) {
 
 func TestHello(t *testing.T) {
 	const s1 = "台我要1234!#$翻译成繁体的汉字asdf"
-	r := ConvertToPinyinString(s1, separator)
+	r := ConvertToPinyinString(s1, "-")
+	t.Log("test:", r)
 }

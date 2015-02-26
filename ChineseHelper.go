@@ -12,6 +12,7 @@ const (
 
 var traditionalChinese map[string]string
 var simplifiedChinese map[string]string
+var multiPinyinChinese map[string]string
 var chineseRegex *regexp.Regexp
 
 func init() {

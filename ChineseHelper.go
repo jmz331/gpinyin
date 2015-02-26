@@ -4,21 +4,17 @@ import (
 	"regexp"
 )
 
+const (
+	data_Chinese_tas  = "db/chinese.txt"
+	data_pinyin       = "db/pinyin.txt"
+	data_multi_pinyin = "db/multi_pinyin.txt"
+)
+
 var traditionalChinese map[string]string
 var simplifiedChinese map[string]string
 var chineseRegex *regexp.Regexp
 
 func init() {
-	traditionalChinese = make(map[string]string)
-	err := loadResource("chinese.db", traditionalChinese, true)
-	if err != nil {
-		panic(err)
-	}
-	simplifiedChinese = make(map[string]string)
-	err = loadResource("chinese.db", simplifiedChinese, false)
-	if err != nil {
-		panic(err)
-	}
 	chineseRegex = regexp.MustCompile("[\u4e00-\u9fa5]")
 }
 
@@ -38,7 +34,19 @@ func ConvertToTraditionalChinese(source string) string {
 	return result
 }
 
+func loadMapFromResource(resourceName string, reverse bool) map[string]string {
+	v := make(map[string]string)
+	err := loadResource(resourceName, v, reverse)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
 func toSimplifiedChinese(source string) string {
+	if simplifiedChinese == nil {
+		simplifiedChinese = loadMapFromResource(data_Chinese_tas, false)
+	}
 	v := simplifiedChinese[source]
 	if len(v) == 0 {
 		return source
@@ -47,6 +55,9 @@ func toSimplifiedChinese(source string) string {
 }
 
 func toTraditionalChinese(source string) string {
+	if traditionalChinese == nil {
+		traditionalChinese = loadMapFromResource(data_Chinese_tas, true)
+	}
 	v := traditionalChinese[source]
 	if len(v) == 0 {
 		return source

@@ -7,7 +7,7 @@ import (
 
 func equal(t *testing.T, got interface{}, want interface{}) {
 	if got != want {
-		t.Errorf("转换繁体失败,%q == %q，期待值：%q", got, want, want)
+		t.Errorf("equal failed,%q == %q，期待值：%q", got, want, want)
 	}
 }
 
@@ -22,8 +22,13 @@ func TestT2SAndS2TConvert(t *testing.T) {
 	equal(t, r2, s1)
 }
 
+func TestIsChinese(t *testing.T) {
+	equal(t, isChinese("我"), true)
+	equal(t, isChinese("臺"), true)
+	equal(t, isChinese("A"), false)
+}
+
 func TestHello(t *testing.T) {
-	t.Logf("r:%v", isChinese("我"))
-	t.Logf("r:%v", isChinese("臺"))
-	t.Logf("r:%v", isChinese("A"))
+	const s1 = "台我要1234!#$翻译成繁体的汉字asdf"
+	r := ConvertToPinyinString(s1, separator)
 }

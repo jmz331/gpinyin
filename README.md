@@ -12,7 +12,7 @@ TODO：
 
 使用方式：
 go get github.com/jmz331/gpinyin
-```
+```go
 import "github.com/jmz331/gpinyin"
 
 const s = "台我要1234!#$翻译成繁体的汉字堡垒asdf"

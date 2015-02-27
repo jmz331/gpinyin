@@ -2,7 +2,6 @@ package gpinyin
 
 import (
 	"testing"
-	// "unicode/utf8"
 )
 
 func equal(t *testing.T, got interface{}, want interface{}) {
@@ -28,8 +27,10 @@ func TestIsChinese(t *testing.T) {
 	equal(t, isChinese("A"), false)
 }
 
-func TestHello(t *testing.T) {
-	const s1 = "台我要1234!#$翻译成繁体的汉字asdf"
-	r := ConvertToPinyinString(s1, "-")
-	t.Log("test:", r)
+func TestConvertToPinyinStringPINYIN_WITHOUT_TONE(t *testing.T) {
+	const s1 = "台我要1234!#$翻译成繁体的汉字堡垒asdf"
+	r1 := ConvertToPinyinString(s1, "-", PINYIN_WITHOUT_TONE)
+	r2 := ConvertToPinyinString(s1, "-", PINYIN_WITH_TONE_MARK)
+	equal(t, r2, "tái-wǒ-yào-1234!#$-fān-yì-chéng-fán-tǐ-de-hàn-zì-bǎo-lěi-asdf")
+	equal(t, r1, "tai-wo-yao-1234!#$-fan-yi-cheng-fan-ti-de-han-zi-bao-lei-asdf")
 }

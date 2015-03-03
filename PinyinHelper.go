@@ -11,11 +11,9 @@ const (
 	//配置文件中的拼音分割字符
 	pinyin_separator = ","
 	//转换类型
-	PINYIN_WITH_TONE_MARK, PINYIN_WITH_TONE_NUMBER, PINYIN_WITHOUT_TONE = 1, 2, 3
+	PINYIN_WITH_TONE_MARK, PINYIN_WITHOUT_TONE = 1, 2
 	//无音标拼音字母
 	all_unmarked_vowel = "aeiouv"
-	//带音标的拼音字母
-	all_marked_vowel = "āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ"
 )
 
 var allUnmarkedVowel map[string]string
@@ -82,9 +80,6 @@ func formatPinyin(pinyinString string, pinyinFormat int) []string {
 	switch pinyinFormat {
 	case PINYIN_WITH_TONE_MARK:
 		return strings.Split(pinyinString, pinyin_separator)
-	case PINYIN_WITH_TONE_NUMBER:
-		//todo: 包含数字音标的拼音实现
-		return nil
 	case PINYIN_WITHOUT_TONE:
 		return convertWithOutTone(pinyinString)
 	}

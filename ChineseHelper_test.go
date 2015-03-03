@@ -11,8 +11,8 @@ func equal(t *testing.T, got interface{}, want interface{}) {
 }
 
 func TestT2SAndS2TConvert(t *testing.T) {
-	const s1 = "台我要1234!#$翻译成繁体的汉字asdf"
-	const s2 = "臺我要1234!#$翻譯成繁體的漢字asdf"
+	const s1 = "台我要1234!#$翻译成繁体的汉字堡垒asdf"
+	const s2 = "臺我要1234!#$翻譯成繁體的漢字堡壘asdf"
 
 	r1 := ConvertToTraditionalChinese(s1)
 	r2 := ConvertToSimplifiedChinese(s2)

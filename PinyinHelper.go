@@ -18,6 +18,7 @@ const (
 
 var allUnmarkedVowel map[string]string
 var allUnmarkedVowelRegex map[string]*regexp.Regexp
+var asciiRegex *regexp.Regexp
 
 func init() {
 	allUnmarkedVowelRegex = map[string]*regexp.Regexp{
@@ -28,6 +29,7 @@ func init() {
 		"u": regexp.MustCompile("[ūúǔù]"),
 		"v": regexp.MustCompile("[ǖǘǚǜ]"),
 	}
+	asciiRegex = regexp.MustCompile("[\x21-\x7e]")
 }
 
 func ConvertToPinyinString(source string, separator string, pinyinFormat int) string {
@@ -60,13 +62,18 @@ func ConvertToPinyinString(source string, separator string, pinyinFormat int) st
 				if pinyinStringArray != nil {
 					result += pinyinStringArray[0]
 				} else {
-					result += char
+					//没找到的情况下默认替换为空字符串并继续执行
+					continue
 				}
 			}
 			if index < (runeLength - 1) {
 				result += separator
 			}
 		} else {
+			if !isASCIIChar(char) {
+				continue
+			}
+
 			result += char
 			if ((index + 1) < runeLength) && isChinese(string(sourceRuneArray[(index+1)])) {
 				result += separator
@@ -102,4 +109,8 @@ func convertPinyinArray(char string, pinyinFormat int) []string {
 		return formatPinyin(pinyinString, pinyinFormat)
 	}
 	return nil
+}
+
+func isASCIIChar(char string) bool {
+	return asciiRegex.MatchString(char)
 }

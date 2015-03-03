@@ -1,4 +1,6 @@
-臺=台
+package gpinyin
+
+const chinese_db = `臺=台
 萬=万
 與=与
 醜=丑
@@ -2542,3 +2544,4 @@
 龔=龚
 龕=龛
 龜=龟
+`

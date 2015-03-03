@@ -5,9 +5,9 @@ import (
 )
 
 const (
-	data_Chinese_tas  = "db/chinese.txt"
-	data_pinyin       = "db/pinyin.txt"
-	data_multi_pinyin = "db/multi_pinyin.txt"
+	data_Chinese_tas  = "chinese"
+	data_pinyin       = "pinyin"
+	data_multi_pinyin = "multi_pinyin"
 )
 
 var traditionalChinese map[string]string

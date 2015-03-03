@@ -2,7 +2,6 @@ package gpinyin
 
 import (
 	"errors"
-	"os"
 	"regexp"
 	"strings"
 )
@@ -17,18 +16,17 @@ import (
 // syntax.  A # symbol at the beginning of a line indicates a comment.
 // Blank lines are ignored.
 func loadResource(filename string, dest map[string]string, reverse bool) error {
-	fi, err := os.Stat(filename)
-	if err != nil {
-		return err
+	var str string
+	if filename == data_pinyin {
+		str = pinyin_db
+	} else if filename == data_Chinese_tas {
+		str = chinese_db
+	} else if filename == data_multi_pinyin {
+		str = multi_pinyin_db
 	}
-	f, err := os.Open(filename)
-	if err != nil {
-		return err
+	if len(str) == 0 {
+		return errors.New("Resource load failed.")
 	}
-	buff := make([]byte, fi.Size())
-	f.Read(buff)
-	f.Close()
-	str := string(buff)
 	if !strings.HasSuffix(str, "\n") {
 		return errors.New("Config file does not end with a newline character.")
 	}

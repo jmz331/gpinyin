@@ -1,4 +1,6 @@
-阿訇=ā,hōng
+package gpinyin
+
+const multi_pinyin_db = `阿訇=ā,hōng
 阿罗汉=ā,luó,hàn
 阿木林=ā,mù,lín
 阿姨=ā,yí
@@ -813,3 +815,4 @@
 数据=shù,jù
 重新=chóng,xīn
 无数=wú,shù
+`

@@ -1,4 +1,6 @@
-〇=líng
+package gpinyin
+
+const pinyin_db = `〇=líng
 一=yī
 丁=dīng,zhēng
 丂=kǎo,qiǎo,yú
@@ -20901,3 +20903,4 @@
 龣=jiǎo
 龤=xié
 龥=yuè
+`

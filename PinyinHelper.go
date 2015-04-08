@@ -42,7 +42,7 @@ func ConvertToPinyinString(source string, separator string, pinyinFormat int) st
 		if isChinese(char) || char == "〇" {
 			rightIndex := index + rightMove
 			foundFlag := false
-			if rightIndex > runeLength {
+			if rightIndex >= runeLength {
 				rightIndex = runeLength - 1
 			}
 			for ; rightIndex > index; rightIndex-- {

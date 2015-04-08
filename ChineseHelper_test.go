@@ -38,3 +38,15 @@ func TestConvertToPinyinStringPINYIN_WITHOUT_TONE(t *testing.T) {
 	equal(t, r1, "tai-wo-yao-1234!#$-fan-yi-cheng-fan-ti-de-han-zi-bao-lei-asdf")
 	equal(t, r3, "ri-ben-yu-1234!#$-fan-yi-cheng-fan-ti-de-han-zi-bao-lei-asdf")
 }
+
+func TestConvertPinyinWithoutTone(t *testing.T) {
+	testEqual(t, "哀感天地", "ai-gan-tian-di")
+	testEqual(t, "当输入字", "dang-shu-ru-zi")
+	testEqual(t, "字符串为", "zi-fu-chuan-wei")
+}
+
+func testEqual(t *testing.T, source string, want string) {
+	r := ConvertToPinyinString(source, "-", PINYIN_WITHOUT_TONE)
+
+	equal(t, r, want)
+}
